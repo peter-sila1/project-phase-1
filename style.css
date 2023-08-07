@@ -1,0 +1,38 @@
+
+body{
+    background-color: violet;
+
+}
+.topnav a{
+    float: left;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+}
+.topnav a:hover{
+    background-color: rgb(221, 221, 221);
+    color: rgb(0, 0, 0);
+}
+.topnav a.active{
+    background-color: #04AA6D;
+  color: white;
+}
+.topnav a.input[type=text]{
+    float: right;
+    padding: 6px;
+    border: none;
+    margin-top: 8px;
+    margin-right: 16px;
+    font-size: 17px;
+
+}
+.image {
+  block-size: 100%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+  margin-top: auto;
+}
