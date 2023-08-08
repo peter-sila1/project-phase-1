@@ -1,9 +1,17 @@
-// Sample meme data 
-const memes = [
-    { url: "meme1.jpg", comments: ["Haha, this is funny!", "Nice one!"] },
-    { url: "meme2.jpg", comments: ["LOL!", "This is epic!"] },
-    // Add more meme objects here
-];
+
+function fetchMeme(data){
+    data.preventDefault();
+
+    const search = input.Value;
+    console.log(search)
+    fetch(`https://api.imgflip.com/get_memes`)
+    .then(respose => respose.json())
+    .then(data =>{
+        console.log(data)
+    })
+ }
+ 
+//  form.addEventListener('submit',fetchMeme);
 
 // Function to display memes on the page
 function displayMemes() {
@@ -13,7 +21,7 @@ function displayMemes() {
     memes.forEach((meme) => {
         const memeDiv = document.createElement("div");
         const memeImg = document.createElement("img");
-        memeImg.src = meme.url;
+        memeImg.src = 'https://github.com/topics/imgflip-api';
         memeDiv.appendChild(memeImg);
         memesContainer.appendChild(memeDiv);
 
