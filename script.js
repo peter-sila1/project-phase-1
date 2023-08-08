@@ -1,4 +1,4 @@
-// Sample meme data (Replace this with actual meme data from a backend)
+// Sample meme data 
 const memes = [
     { url: "meme1.jpg", comments: ["Haha, this is funny!", "Nice one!"] },
     { url: "meme2.jpg", comments: ["LOL!", "This is epic!"] },
@@ -38,13 +38,13 @@ function postComment() {
     const commentInput = document.getElementById("commentInput");
     const comment = commentInput.value;
 
-    // Add code here to handle actual comment posting to a backend (not implemented in this template)
+    // Add code here to handle actual comment 
     console.log("Posting comment:", comment);
 
     // Clear the input field after posting the comment
     commentInput.value = "";
 
-    // Refresh the displayed comments (not needed when using a real backend)
+    // Refresh the displayed comments 
     displayComments(["Comment posted: " + comment]);
 }
 
@@ -53,7 +53,7 @@ function handleSearch() {
     const searchInput = document.getElementById("searchInput");
     const searchTerm = searchInput.value.toLowerCase();
 
-    // Filter memes based on the search term (not needed when using a real backend)
+    // Filter memes based on the search term 
     const filteredMemes = memes.filter((meme) => meme.url.toLowerCase().includes(searchTerm));
 
     // Update the displayed memes
