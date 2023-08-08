@@ -1,76 +1,57 @@
-
-function fetchMeme(data){
-    data.preventDefault();
-
-    const search = input.Value;
-    console.log(search)
-    fetch(`https://api.imgflip.com/get_memes`)
-    .then(respose => respose.json())
-    .then(data =>{
+async function fetchMemes() {
+    try {
+        const response = await fetch('https://api.imgflip.com/get_memes');
+        const data = await response.json();
         console.log(data)
-    })
- }
- 
-//  form.addEventListener('submit',fetchMeme);
+        return data.data.memes;
+    } catch (error) {
+        console.error('Error fetching memes:', error);
+        return [];
+    }
+}
 
-// Function to display memes on the page
-function displayMemes() {
-    const memesContainer = document.getElementById("memesContainer");
-    memesContainer.innerHTML = "";
+function displayMemes(memes) {
+    const memesContainer = document.getElementById('memesContainer');
+    memesContainer.innerHTML = '';
 
-    memes.forEach((meme) => {
-        const memeDiv = document.createElement("div");
-        const memeImg = document.createElement("img");
-        memeImg.src = 'https://github.com/topics/imgflip-api';
-        memeDiv.appendChild(memeImg);
-        memesContainer.appendChild(memeDiv);
+    memes.forEach(meme => {
+        const memeElement = document.createElement('div');
+        memeElement.className = 'meme';
 
-        memeDiv.addEventListener("click", () => displayComments(meme.comments));
+        const imgElement = document.createElement('img');
+        imgElement.src = meme.url;
+
+        const nameElement = document.createElement('h2');
+        nameElement.src = meme.name;
+
+        // console.log(imgElement);
+        console.log(nameElement);
+
+        const favoriteButton = document.createElement('button');
+        favoriteButton.textContent = 'Favorite';
+        favoriteButton.addEventListener('click', () => {
+            // Add code to handle favorite functionality
+            // You can store favorites in local storage or a database
+        });
+
+        memeElement.appendChild(imgElement);
+        memeElement.appendChild(favoriteButton);
+
+        memesContainer.appendChild(nameElement);
+
+        memesContainer.appendChild(memeElement);
     });
 }
 
-// Function to display comments for a meme
-function displayComments(comments) {
-    const commentsContainer = document.getElementById("commentsContainer");
-    commentsContainer.innerHTML = "";
-
-    comments.forEach((comment) => {
-        const commentDiv = document.createElement("div");
-        commentDiv.textContent = comment;
-        commentsContainer.appendChild(commentDiv);
-    });
-}
-
-// Function to handle posting a comment
-function postComment() {
-    const commentInput = document.getElementById("commentInput");
-    const comment = commentInput.value;
-
-    // Add code here to handle actual comment 
-    console.log("Posting comment:", comment);
-
-    // Clear the input field after posting the comment
-    commentInput.value = "";
-
-    // Refresh the displayed comments 
-    displayComments(["Comment posted: " + comment]);
-}
-
-// Function to handle search input
-function handleSearch() {
-    const searchInput = document.getElementById("searchInput");
-    const searchTerm = searchInput.value.toLowerCase();
-
-    // Filter memes based on the search term 
-    const filteredMemes = memes.filter((meme) => meme.url.toLowerCase().includes(searchTerm));
-
-    // Update the displayed memes
+async function searchMeme() {
+    const searchInputs = document.getElementById('searchInput').value.toLowerCase();
+    const memes = await fetchMemes();
+    const filteredMemes = memes.filter(meme => meme.name.toLowerCase().includes(searchInputs));
     displayMemes(filteredMemes);
 }
 
-// Event listeners
-window.onload = function() {
-    displayMemes();
-    document.getElementById("searchInput").addEventListener("keyup", handleSearch);
-};
- 
+// Initial fetch and display
+(async () => {
+    const memes = await fetchMemes();
+    displayMemes(memes);
+})();

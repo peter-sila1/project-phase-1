@@ -33,6 +33,13 @@ body{
         margin: 10px;
     }
     
+/* styling the contact page */
+#contact {
+    height: 20cm;
+}
+
+
+
     footer {
         background-color: #eee;
         padding: 10px;
