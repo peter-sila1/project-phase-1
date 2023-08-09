@@ -7,7 +7,12 @@ body{
     }
     
 .memeContainer{
-    margin-right: 10cm;
+    
+    display: flex;
+  flex-direction: grid;
+  align-items: left;
+  margin-top: 20px;
+
 }
 
     
