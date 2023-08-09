@@ -13,16 +13,16 @@ async function fetchMemes() {
 function displayMemes(memes) {
     const memesContainer = document.getElementById('memesContainer');
     memesContainer.innerHTML = '';
-    var table = document.getElementById("financeDashboardTable");
+    var table = document.getElementById("memesCountainerTable");
 
     for (var i = 0; i < data.length; i++) {
       var row = document.createElement("tr");
 
       row.innerHTML = `
-        <td>${data[i].first_name}</td>
-        <td>${data[i].last_name}</td>
-        <td>${data[i].student_email}</td>
-        <td>${data[i].student_contact}</td>
+        <td>${data[i].first_meme}</td>
+        <td>${data[i].last_meme}</td>
+        <td>${data[i].favorite_meme}</td>
+        <td>${data[i].long_meme}</td>
         <td><a href="#" class="btn btn-success">Edit</a></td>
         <td><a href="#" class="btn  btn-danger">Delete</a></td>
       `;
@@ -65,7 +65,7 @@ function displayMemes(memes) {
 
         memesContainer.appendChild(memeElement);
     });
-}
+
 
 async function searchMeme() {
     const searchInputs = document.getElementById('searchInput').value.toLowerCase();
