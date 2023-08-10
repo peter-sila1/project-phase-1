@@ -13,22 +13,7 @@ async function fetchMemes() {
 function displayMemes(memes) {
     const memesContainer = document.getElementById('memesContainer');
     memesContainer.innerHTML = '';
-    var table = document.getElementById("memesCountainerTable");
-
-    for (var i = 0; i < data.length; i++) {
-      var row = document.createElement("tr");
-
-      row.innerHTML = `
-        <td>${data[i].first_meme}</td>
-        <td>${data[i].last_meme}</td>
-        <td>${data[i].favorite_meme}</td>
-        <td>${data[i].long_meme}</td>
-        <td><a href="#" class="btn btn-success">Edit</a></td>
-        <td><a href="#" class="btn  btn-danger">Delete</a></td>
-      `;
-
-      table.appendChild(row);
-    }
+    
   }
 
 
@@ -45,9 +30,7 @@ function displayMemes(memes) {
         const memeTitle = document.createElement("h3");
       memeTitle.textContent = meme.name;
 
-        memeElement.style.display = 'grid';
-        memeElement.style.marginBottom = '20px';
-
+    
         // console.log(imgElement);
         console.log(nameElement);
 
