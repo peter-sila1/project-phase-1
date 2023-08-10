@@ -48,7 +48,7 @@ searchButton.addEventListener('click', async () => {
 memeContainer.addEventListener('click', event => {
     if (event.target.classList.contains('favorite')) {
         const memeId = event.target.getAttribute('data-id');
-        // You can implement your own favorite logic here
+        // Handle favorite logic click
         console.log(`Favorite clicked for meme with ID: ${memeId}`);
     }
 
