@@ -77,3 +77,20 @@ body{
         margin-right: 15px;
         font-size: 17px; 
     }
+
+    #memeContainer {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        padding: 20px;
+    }
+        .meme {
+            border: 1px solid #ddd;
+            margin: 10px;
+            padding: 10px;
+            text-align: center;
+    }
+            favorite {
+                color: red;
+                cursor: pointer; 
+    }

@@ -1,8 +1,14 @@
+const memeContainer = document.getElementById('memeContainer');
+const searchInput = document.getElementById('searchInput');
+const searchButton = document.getElementById('searchButton');
+
+const API_URL = 'https://api.imgflip.com/get_memes';
+
+// Fetch meme data from the API
 async function fetchMemes() {
     try {
-        const response = await fetch('https://api.imgflip.com/get_memes');
+        const response = await fetch(API_URL);
         const data = await response.json();
-        console.log(data)
         return data.data.memes;
     } catch (error) {
         console.error('Error fetching memes:', error);
@@ -10,55 +16,39 @@ async function fetchMemes() {
     }
 }
 
+// Display memes in the memeContainer
 function displayMemes(memes) {
-    const memesContainer = document.getElementById('memesContainer');
-    memesContainer.innerHTML = '';
-    
-  }
-
-
+    memeContainer.innerHTML = '';
     memes.forEach(meme => {
-        const memeElement = document.createElement('div');
-        memeElement.className = 'meme';
-
-        const imgElement = document.createElement('img');
-        imgElement.src = meme.url;
-
-        const nameElement = document.createElement('h2');
-        nameElement.src = meme.name;
-
-        const memeTitle = document.createElement("h3");
-      memeTitle.textContent = meme.name;
-
-    
-        // console.log(imgElement);
-        console.log(nameElement);
-
-        const favoriteButton = document.createElement('button');
-        favoriteButton.textContent = 'Favorite';
-        favoriteButton.addEventListener('click', () => {
-            // Add code to handle favorite functionality
-            // You can store favorites in local storage or a database
-        });
-
-        memeElement.appendChild(imgElement);
-        memeElement.appendChild(favoriteButton);
-
-        memesContainer.appendChild(nameElement);
-
-        memesContainer.appendChild(memeElement);
+        const memeDiv = document.createElement('div');
+        memeDiv.className = 'meme';
+        memeDiv.innerHTML = `
+            <img src="${meme.url}" alt="${meme.name}">
+            <p>${meme.name}</p>
+            <span class="favorite" data-id="${meme.id}">❤️ Favorite</span>
+        `;
+        memeContainer.appendChild(memeDiv);
     });
-
-
-async function searchMeme() {
-    const searchInputs = document.getElementById('searchInput').value.toLowerCase();
-    const memes = await fetchMemes();
-    const filteredMemes = memes.filter(meme => meme.name.toLowerCase().includes(searchInputs));
-    displayMemes(filteredMemes);
 }
 
-// Initial fetch and display
-(async () => {
-    const memes = await fetchMemes();
+// Fetch and display memes when the page loads
+fetchMemes().then(memes => {
     displayMemes(memes);
-})();
+});
+
+// Handle search button click
+searchButton.addEventListener('click', async () => {
+    const searchTerm = searchInput.value.toLowerCase();
+    const memes = await fetchMemes();
+    const filteredMemes = memes.filter(meme => meme.name.toLowerCase().includes(searchTerm));
+    displayMemes(filteredMemes);
+});
+
+// Handle favorite button click
+memeContainer.addEventListener('click', event => {
+    if (event.target.classList.contains('favorite')) {
+        const memeId = event.target.getAttribute('data-id');
+        // You can implement your own favorite logic here
+        console.log(`Favorite clicked for meme with ID: ${memeId}`);
+    }
+});
