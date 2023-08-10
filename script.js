@@ -51,4 +51,14 @@ memeContainer.addEventListener('click', event => {
         // You can implement your own favorite logic here
         console.log(`Favorite clicked for meme with ID: ${memeId}`);
     }
+
+    
+});
+
+// Handle comment button click
+searchButton.addEventListener('click', async () => {
+    const commentTerm = commentInput.value.toLowerCase();
+    const memes = await fetchMemes();
+    const filteredMemes = memes.filter(meme => meme.name.toLowerCase().includes(commentTerm));
+    displayMemes(filteredMemes);
 });
