@@ -55,10 +55,5 @@ memeContainer.addEventListener('click', event => {
     
 });
 
-// Handle comment button click
-searchButton.addEventListener('click', async () => {
-    const commentTerm = commentInput.value.toLowerCase();
-    const memes = await fetchMemes();
-    const filteredMemes = memes.filter(meme => meme.name.toLowerCase().includes(commentTerm));
-    displayMemes(filteredMemes);
-});
+
+
